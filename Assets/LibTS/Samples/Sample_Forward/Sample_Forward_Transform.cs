@@ -16,27 +16,26 @@ public class Sample_Forward_Transform : MonoBehaviour
     [Header("デバッグ")]
     [SerializeField] private bool _allowDebug = true;
 
-    private void Start()
+    private void Update()
     {
-        this.ForwardConstantly(_direction, 3f, _moveSpeed, _rotateSpeed, _timeType);
+        Info_Forward i = default;
+        if (_target != null)
+        {
+            i = transform.Forward(_target, _moveSpeed, _rotateSpeed, _timeType);
+            if (_allowDebug)
+            {
+                Debug.Log($"移動距離: {i.Distance}, 回転角度: {i.Angle}");
+                Debug.Log($"移動方向: {i.Direction}");
+                Debug.Log($"目標地点に到達: {i.IsGoal}");
+            }
+        }
+        else
+        {
+            i = transform.Forward(
+                _direction, _moveSpeed, _rotateSpeed, _timeType
+            );
+            if (_allowDebug)
+                Debug.Log($"移動距離: {i.Distance}, 回転角度: {i.Angle}");
+        }
     }
-
-    // private void Update()
-    // {
-    //     if (_target != null)
-    //     {
-    //         var t = transform.Forward(_target, out Vector3 direction, _moveSpeed, _rotateSpeed, _error, _timeType);
-    //         if (_allowDebug)
-    //         {
-    //             Debug.Log($"移動距離: {t.Item1}, 回転角度: {t.Item2}");
-    //             Debug.Log($"移動方向: {direction}");
-    //         }
-    //     }
-    //     else
-    //     {
-    //         var t = transform.Forward(_direction, _moveSpeed, _rotateSpeed, _timeType);
-    //         if (_allowDebug)
-    //             Debug.Log($"移動距離: {t.Item1}, 回転角度: {t.Item2}");
-    //     }
-    // }
 }

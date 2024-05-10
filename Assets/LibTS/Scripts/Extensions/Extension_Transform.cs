@@ -1,5 +1,5 @@
-using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace LibTS
@@ -10,7 +10,7 @@ namespace LibTS
         /// <summary>
         /// 指定した方向に、自分の向きを変えつつ移動する（1フレームしか実行されない）
         /// </summary>
-        public static Tuple<float, float> Forward(
+        public static Info_Forward Forward(
             this Transform transform, Vector3 direction,
             float moveSpeed = 1f, float rotateSpeed = 1f,
             TimeType timeType = TimeType.Default
@@ -22,47 +22,48 @@ namespace LibTS
                 Time.deltaTime;
             
             Vector3 prePosition = transform.position;
-            transform.position += moveSpeed * time * direction.normalized;
+            Vector3 rD = moveSpeed * time * direction.normalized;
+            transform.position += rD;
             Quaternion preRotation = transform.rotation;
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), rotateSpeed * time);
             
-            return new Tuple<float, float>(
+            return new Info_Forward(
                 Vector3.Distance(transform.position, prePosition),
-                Quaternion.Angle(transform.rotation, preRotation)
+                Quaternion.Angle(transform.rotation, preRotation),
+                false,
+                rD
             );
-        }
-        
-        /// <summary>
-        /// 指定したターゲットの位置に向けて、自分の向きを変えつつ移動する（1フレームしか実行されない）
-        /// </summary>
-        public static Tuple<float, float> Forward(
-            this Transform transform, Transform target,
-            float moveSpeed = 1f, float rotateSpeed = 1f, float error = 0.1f,
-            TimeType timeType = TimeType.Default
-        )
-        {
-            var direction = target.position - transform.position;
-            if (direction.magnitude < error)
-                return new Tuple<float, float>(0f, 0f);
-            return transform.Forward(direction, moveSpeed, rotateSpeed, timeType);
         }
 
         /// <summary>
-        /// 指定した方向に、自分の向きを変えつつ移動する（1フレームしか実行されない）
-        /// directionは、移動方向を示すベクトル
+        /// 指定したターゲットの位置に向けて、自分の向きを変えつつ移動する（1フレームしか実行されない）
         /// </summary>
-        public static Tuple<float, float> Forward(
-            this Transform transform, Transform target, out Vector3 direction,
-            float moveSpeed = 1f, float rotateSpeed = 1f, float error = 0.1f,
+        public static Info_Forward Forward(
+            this Transform transform, Transform target,
+            float moveSpeed = 1f, float rotateSpeed = 1f,
             TimeType timeType = TimeType.Default
         )
         {
-            direction = target.position - transform.position;
-            return transform.Forward(target, moveSpeed, rotateSpeed, error, timeType);
+            bool isGoal = transform.position == target.position;
+            if (isGoal)
+                return new Info_Forward(0f, 0f, true, Vector3.zero);
+
+            var direction = target.position - transform.position;
+            var i = transform.Forward(direction, moveSpeed, rotateSpeed, timeType);
+
+            if ((target.position - transform.position).normalized != direction.normalized)
+            {
+                transform.position = target.position;
+                direction = Vector3.zero;
+            }
+
+            return new Info_Forward(i.Distance, i.Angle, isGoal, direction);
         }
         #endregion
 
         #region ForwardConstantly
+        private static Dictionary<MonoBehaviour, Coroutine> _dicForwardConstantlyCoroutine = new();
+
         public static void ForwardConstantly(
             this MonoBehaviour monoBehaviour, Vector3 direction, float time,
             float moveSpeed = 1f, float rotateSpeed = 1f,
