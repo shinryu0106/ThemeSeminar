@@ -66,10 +66,11 @@
   <ItemGroup>
     <Compile Include="Assets/LibTS/Scripts/Enums/Enum_TimeType.cs" />
     <Compile Include="Assets/LibTS/Samples/Sample_Forward/Sample_Forward_Transform.cs" />
-    <Compile Include="Assets/LibTS/Scripts/Extensions/Extension_MonoBehaviour.cs" />
+    <Compile Include="Assets/LibTS/Scripts/Informations/Coroutines/TransformCoroutineManager.cs" />
     <Compile Include="Assets/LibTS/Scripts/Informations/Info_Forward.cs" />
     <Compile Include="Assets/LibTS/Samples/Sample_Forward/Sample_ForwardConstantly_Transform.cs" />
     <Compile Include="Assets/LibTS/Scripts/Extensions/EventChecker.cs" />
+    <Compile Include="Assets/LibTS/Scripts/Informations/Coroutines/BaseCoroutine.cs" />
     <Compile Include="Assets/LibTS/Scripts/Extensions/Extension_Transform.cs" />
   </ItemGroup>
   <ItemGroup>

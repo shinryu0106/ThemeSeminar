@@ -62,45 +62,41 @@ namespace LibTS
         #endregion
 
         #region ForwardConstantly
-        private static Dictionary<MonoBehaviour, Coroutine> _dicForwardConstantlyCoroutine = new();
-
+        /// <summary>
+        /// 指定した方向に、自分の向きを変えつつ指定時間だけ移動する
+        /// </summary>
         public static void ForwardConstantly(
-            this MonoBehaviour monoBehaviour, Vector3 direction, float time,
+            this Transform transform, Vector3 direction, float time = 1f,
             float moveSpeed = 1f, float rotateSpeed = 1f,
             TimeType timeType = TimeType.Default
         )
         {
-            monoBehaviour.StartCoroutine(monoBehaviour.transform.ForwardConstantlyCoroutine(direction, time, moveSpeed, rotateSpeed, timeType));
+            var tCM = transform.gameObject.AddComponent<TransformCoroutineManager>();
+            tCM.InvokeForwardConstantly(direction, time, moveSpeed, rotateSpeed, timeType);
         }
 
-        public static IEnumerator ForwardConstantlyCoroutine(
-            this Transform transform, Vector3 direction, float time,
-            float moveSpeed = 1f, float rotateSpeed = 1f,
+        /// <summary>
+        /// 指定したターゲットの位置に向けて、自分の向きを変えつつ指定時間内に到着するように移動する
+        /// </summary>
+        public static void ForwardConstantly(
+            this Transform transform, Transform target, float time = 1f,
+            float rotateSpeed = 1f,
             TimeType timeType = TimeType.Default
         )
         {
-            float preTime = Time.time;
-            while (true)
-            {
-                transform.Forward(direction, moveSpeed, rotateSpeed, timeType);
-                if (Time.time - preTime >= time)
-                    break;
-                yield return null;
-                
-                // timeTypeは使わないで、timeを最大時間とする
-                // switch (timeType)
-                // {
-                //     case TimeType.FixedTime:
-                //         yield return new WaitForFixedUpdate();
-                //         break;
-                //     case TimeType.RealTime:
-                //         yield return new WaitForSecondsRealtime(time);
-                //         break;
-                //     default:
-                //         yield return null;
-                //         break;
-                // }
-            }
+            var tCM = transform.gameObject.AddComponent<TransformCoroutineManager>();
+            tCM.InvokeForwardConstantly(target, time, rotateSpeed, timeType);
+        }
+
+        /// <summary>
+        /// ForwardConstantlyの停止（種類不問）
+        /// </summary>
+        public static void StopForwardConstantly(this Transform transform)
+        {
+            if (transform.TryGetComponent<TransformCoroutineManager>(out var tCM))
+                tCM.Stop();
+            else
+                Debug.LogError("開始されているForwardConstantly(direction)が存在しません。");
         }
         #endregion
     }
