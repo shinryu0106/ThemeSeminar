@@ -96,7 +96,7 @@ namespace LibTS
             if (transform.TryGetComponent<TransformCoroutineManager>(out var tCM))
                 tCM.Stop();
             else
-                Debug.LogError("開始されているForwardConstantly(direction)が存在しません。");
+                Debug.LogWarning("開始されているForwardConstantly(direction)が存在しません。");
         }
         #endregion
     }
