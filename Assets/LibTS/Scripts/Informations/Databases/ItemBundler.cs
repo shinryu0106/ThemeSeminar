@@ -5,7 +5,7 @@ namespace LibTS
 {
     public static class ItemBundler
     {
-        private static readonly Dictionary<string, Dictionary<int, BaseItem>> _bundle = new();
+        private static readonly Dictionary<string, Dictionary<int, BaseItem>> _bundle_items_libts = new();
 
         #region Bundle
         /// <summary>
@@ -16,9 +16,9 @@ namespace LibTS
         /// </remarks>
         public static bool ContainsItem(string categoryName, int id)
         {
-            if (!_bundle.ContainsKey(categoryName))
+            if (!_bundle_items_libts.ContainsKey(categoryName))
                 return false;
-            return _bundle[categoryName].ContainsKey(id);
+            return _bundle_items_libts[categoryName].ContainsKey(id);
         }
 
         /// <summary>
@@ -29,9 +29,9 @@ namespace LibTS
         /// </remarks>
         public static bool ContainsItem(string categoryName, string name)
         {
-            if (!_bundle.ContainsKey(categoryName))
+            if (!_bundle_items_libts.ContainsKey(categoryName))
                 return false;
-            foreach (var item in _bundle[categoryName])
+            foreach (var item in _bundle_items_libts[categoryName])
                 if (item.Value.Name == name)
                     return true;
             return false;
@@ -45,17 +45,17 @@ namespace LibTS
         /// </remarks>
         public static BaseItem GetItem(string categoryName, int id)
         {
-            if (!_bundle.ContainsKey(categoryName))
+            if (!_bundle_items_libts.ContainsKey(categoryName))
             {
                 Debug.LogWarning($"Bundle '{categoryName}' は存在しません。");
                 return null;
             }
-            if (!_bundle[categoryName].ContainsKey(id))
+            if (!_bundle_items_libts[categoryName].ContainsKey(id))
             {
                 Debug.LogWarning($"Item ID '{id}' は存在しません。");
                 return null;
             }
-            return _bundle[categoryName][id];
+            return _bundle_items_libts[categoryName][id];
         }
 
         /// <summary>
@@ -66,12 +66,12 @@ namespace LibTS
         /// </remarks>
         public static BaseItem GetItem(string categoryName, string name)
         {
-            if (!_bundle.ContainsKey(categoryName))
+            if (!_bundle_items_libts.ContainsKey(categoryName))
             {
                 Debug.LogWarning($"Bundle '{categoryName}' は存在しません。");
                 return null;
             }
-            foreach (var item in _bundle[categoryName])
+            foreach (var item in _bundle_items_libts[categoryName])
             {
                 if (item.Value.Name == name)
                 {
@@ -87,12 +87,12 @@ namespace LibTS
         /// </summary>
         public static void AddBundle(string categoryName)
         {
-            if (_bundle.ContainsKey(categoryName))
+            if (_bundle_items_libts.ContainsKey(categoryName))
             {
                 Debug.LogWarning($"Bundle '{categoryName}' は既に存在します。");
                 return;
             }
-            _bundle.Add(categoryName, new Dictionary<int, BaseItem>());
+            _bundle_items_libts.Add(categoryName, new Dictionary<int, BaseItem>());
         }
 
         /// <summary>
@@ -100,12 +100,12 @@ namespace LibTS
         /// </summary>
         public static void DeleteBundle(string categoryName)
         {
-            if (!_bundle.ContainsKey(categoryName))
+            if (!_bundle_items_libts.ContainsKey(categoryName))
             {
                 Debug.LogWarning($"Bundle '{categoryName}' は存在しません。");
                 return;
             }
-            _bundle.Remove(categoryName);
+            _bundle_items_libts.Remove(categoryName);
         }
         #endregion
 
@@ -118,14 +118,14 @@ namespace LibTS
         /// </remarks>
         public static void AddItem(string categoryName, BaseItem item)
         {
-            if (!_bundle.ContainsKey(categoryName))
+            if (!_bundle_items_libts.ContainsKey(categoryName))
                 AddBundle(categoryName);
-            if (_bundle[categoryName].ContainsKey(item.ID))
+            if (_bundle_items_libts[categoryName].ContainsKey(item.ID))
             {
-                Debug.LogWarning($"Item '{item.Name}' は既に存在します。");
+                Debug.LogWarning($"Item '{item.Name}' が既に存在しているか、IDが重複しています。");
                 return;
             }
-            _bundle[categoryName].Add(item.ID, item);
+            _bundle_items_libts[categoryName].Add(item.ID, item);
         }
 
         /// <summary>
@@ -134,13 +134,12 @@ namespace LibTS
         /// <remarks>
         /// ID, 名前, 個数を指定して追加
         /// </remarks>
-        public static int AddItem(string categoryName, int id, string name, int count = 0)
+        public static void AddItem(string categoryName, int id, string name, int count = 0)
         {
             AddItem(
                 categoryName,
                 ScriptableObject.CreateInstance<BaseItem>().Set(id, name, count)
             );
-            return id;
         }
 
         /// <summary>
@@ -152,7 +151,7 @@ namespace LibTS
         public static int AddItem(string categoryName, string name, int count = 0)
         {
             int id = 0;
-            while (_bundle[categoryName].ContainsKey(id))
+            while (_bundle_items_libts[categoryName].ContainsKey(id))
             {
                 id++;
                 if (id >= int.MaxValue)
@@ -176,17 +175,17 @@ namespace LibTS
         /// </remarks>
         public static bool DeleteItem(string categoryName, int id)
         {
-            if (!_bundle.ContainsKey(categoryName))
+            if (!_bundle_items_libts.ContainsKey(categoryName))
             {
                 Debug.LogWarning($"Bundle '{categoryName}' は存在しません。");
                 return false;
             }
-            if (!_bundle[categoryName].ContainsKey(id))
+            if (!_bundle_items_libts[categoryName].ContainsKey(id))
             {
                 Debug.LogWarning($"Item ID '{id}' は存在しません。");
                 return false;
             }
-            return _bundle[categoryName].Remove(id);
+            return _bundle_items_libts[categoryName].Remove(id);
         }
 
         /// <summary>
@@ -197,16 +196,16 @@ namespace LibTS
         /// </remarks>
         public static bool DeleteItem(string categoryName, string name)
         {
-            if (!_bundle.ContainsKey(categoryName))
+            if (!_bundle_items_libts.ContainsKey(categoryName))
             {
                 Debug.LogWarning($"Bundle '{categoryName}' は存在しません。");
                 return false;
             }
-            foreach (var item in _bundle[categoryName])
+            foreach (var item in _bundle_items_libts[categoryName])
             {
                 if (item.Value.Name == name)
                 {
-                    return _bundle[categoryName].Remove(item.Key);
+                    return _bundle_items_libts[categoryName].Remove(item.Key);
                 }
             }
             Debug.LogWarning($"Item '{name}' は存在しません。");

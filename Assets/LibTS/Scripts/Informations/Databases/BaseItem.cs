@@ -5,7 +5,7 @@ namespace LibTS
     [CreateAssetMenu(fileName = "New Base Item", menuName = "LibTS/Base Item")]
     public class BaseItem : ScriptableObject
     {
-        public BaseItem Set(int id = 0, string name = "New Item", int count = 0)
+        public virtual BaseItem Set(int id = 0, string name = "New Item", int count = 0)
         {
             _id = id;
             _name = name;
