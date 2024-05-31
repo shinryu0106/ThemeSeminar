@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace LibTS
@@ -96,7 +94,7 @@ namespace LibTS
             if (transform.TryGetComponent<TransformCoroutineManager>(out var tCM))
                 tCM.Stop();
             else
-                Debug.LogWarning("開始されているForwardConstantly(direction)が存在しません。");
+                Debug.LogWarning("開始されているForwardConstantlyが存在しません。");
         }
         #endregion
     }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace LibTS
 {
-    public struct Info_Forward
+    public readonly struct Info_Forward
     {
         public Info_Forward(float r_dist = 0f, float r_angle = 0f, bool r_isGoal = false, Vector3 r_dict = default)
         {
