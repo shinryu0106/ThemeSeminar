@@ -2,13 +2,13 @@ using UnityEngine;
 using LibTS;
 using UnityEngine.UI;
 
-public class ItemDescriber : MonoBehaviour
+public class Sample_ItemDescriber : MonoBehaviour
 {
     const string CATEGORY = "Sample";
 
     [Header("設定")]
     [SerializeField] private BaseItem _item;
-    [SerializeField] private OverrideItemSample _overrideItem;
+    [SerializeField] private Sample_OverrideItem _overrideItem;
     private int _id_base;
     private int _id_override;
     [SerializeField] private Text _text;
@@ -18,7 +18,7 @@ public class ItemDescriber : MonoBehaviour
         if (isOverride)
             _text.text = ItemBundler.GetItem(CATEGORY, _id_override).Name +
                          " : " +
-                         ((OverrideItemSample)ItemBundler.GetItem(CATEGORY, _id_override)).Description;
+                         ((Sample_OverrideItem)ItemBundler.GetItem(CATEGORY, _id_override)).Description;
         else
             _text.text = ItemBundler.GetItem(CATEGORY, _id_base).Name +
                          " : " +

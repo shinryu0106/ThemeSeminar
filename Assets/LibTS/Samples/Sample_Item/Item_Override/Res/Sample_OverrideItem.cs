@@ -2,7 +2,7 @@ using UnityEngine;
 using LibTS;
 
 [CreateAssetMenu(fileName = "New Override Item", menuName = "LibTS/Override Item")]
-public class OverrideItemSample : BaseItem
+public class Sample_OverrideItem : BaseItem
 {
     public BaseItem Set(int id = 0, string name = "New Item", int count = 0, string description = "New Description")
     {

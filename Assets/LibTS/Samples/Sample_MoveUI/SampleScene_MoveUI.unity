@@ -241,7 +241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -261,7 +261,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u306E\u30B5\u30F3\u30D7\u30EB"
+  m_Text: "\u52D5\u304FUI\u306E\u30B5\u30F3\u30D7\u30EB"
 --- !u!222 &324634485
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -650,6 +650,7 @@ GameObject:
   - component: {fileID: 2093793019}
   - component: {fileID: 2093793018}
   - component: {fileID: 2093793017}
+  - component: {fileID: 2093793020}
   m_Layer: 5
   m_Name: DummyButton
   m_TagString: Untagged
@@ -720,7 +721,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2093793018}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2093793020}
+        m_TargetAssemblyTypeName: Sample_MoveUi, Assembly-CSharp
+        m_MethodName: Move
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2093793018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -759,6 +772,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2093793015}
   m_CullTransparentMesh: 1
+--- !u!114 &2093793020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2093793015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a5406c8e3ddb402b9c75589698d86ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rectTransform: {fileID: 2093793016}
+  _positions:
+  - {x: 0, y: 0, z: 0}
+  - {x: -690, y: 327, z: 0}
+  - {x: 679, y: 126, z: 0}
+  _rotations:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 21.5}
+  - {x: 0, y: -45, z: -5}
+  _scales:
+  - {x: 1, y: 1, z: 1}
+  - {x: 2, y: 2, z: 2}
+  - {x: 0.5, y: 0.5, z: 0.5}
+  _moveTimes:
+  - 2
+  - 1
+  - 3
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

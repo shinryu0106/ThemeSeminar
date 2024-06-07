@@ -2,7 +2,7 @@ using LibTS;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ItemPrefabController : MonoBehaviour
+public class Sample_ItemPrefabController : MonoBehaviour
 {
     [Header("設定")]
     [SerializeField] private Text _categoryNameText;

@@ -2,7 +2,7 @@ using LibTS;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ItemPrefabInstancer : MonoBehaviour
+public class Sample_ItemPrefabInstancer : MonoBehaviour
 {
     [Header("設定")]
     [SerializeField] private InputField _categoryNameField;
@@ -45,7 +45,7 @@ public class ItemPrefabInstancer : MonoBehaviour
         }
         
         var itemPrefabInstance = Instantiate(_itemPrefab, _itemPrefabParent);
-        itemPrefabInstance.GetComponent<ItemPrefabController>().SetItemInformation(cN, id, iN, cnt);
+        itemPrefabInstance.GetComponent<Sample_ItemPrefabController>().SetItemInformation(cN, id, iN, cnt);
 
         ItemBundler.AddItem(cN, id, iN, cnt);
     }
