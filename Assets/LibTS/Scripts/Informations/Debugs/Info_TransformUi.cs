@@ -4,23 +4,23 @@ using UnityEngine;
 namespace LibTS
 {
     [Serializable]
-    public struct Info_Transform
+    public struct Info_TransformUi
     {
-        public Info_Transform(Vector3 position = default, Quaternion rotation = default, Vector3 scale = default)
+        public Info_TransformUi(Vector3 position = default, Quaternion rotation = default, Vector3 scale = default)
         {
             this.position = position;
             this.rotation = rotation;
             this.scale = scale;
         }
 
-        public Info_Transform(Vector3 position = default, Vector3 eulerAngles = default, Vector3 scale = default)
+        public Info_TransformUi(Vector3 position = default, Vector3 eulerAngles = default, Vector3 scale = default)
         {
             this.position = position;
             this.rotation = Quaternion.Euler(eulerAngles);
             this.scale = scale;
         }
 
-        public Info_Transform(Transform transform)
+        public Info_TransformUi(Transform transform)
         {
             this.position = transform.position;
             this.rotation = transform.rotation;

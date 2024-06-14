@@ -11,7 +11,7 @@ namespace LibTS
     {
         private readonly RectTransform _rectTransform = null;
         private readonly Selectable _selectable = null;
-        [SerializeField] private List<Info_Transform> _info_Transforms = new();
+        [SerializeField] private List<Info_TransformUi> _info_Transforms = new();
         private int _nowPoint = 0;
         public int NowPoint { get { return _nowPoint; } }
 
@@ -28,7 +28,7 @@ namespace LibTS
         /// <remarks>
         /// positionはVector3型、rotationはQuaternion型、scaleはVector3型で指定
         /// </remarks>
-        public void Add(Vector3 position = default, Quaternion rotation = default, Vector3 scale = default) => _info_Transforms.Add(new Info_Transform(position, rotation, scale));
+        public void Add(Vector3 position = default, Quaternion rotation = default, Vector3 scale = default) => _info_Transforms.Add(new Info_TransformUi(position, rotation, scale));
 
         /// <summary>
         /// 新しい動作演出ポイントを追加
@@ -36,7 +36,7 @@ namespace LibTS
         /// <remarks>
         /// positionはVector3型、eulerAnglesはVector3型、scaleはVector3型で指定
         /// </remarks>
-        public void Add(Vector3 position = default, Vector3 eulerAngles = default, Vector3 scale = default) => _info_Transforms.Add(new Info_Transform(position, eulerAngles, scale));
+        public void Add(Vector3 position = default, Vector3 eulerAngles = default, Vector3 scale = default) => _info_Transforms.Add(new Info_TransformUi(position, eulerAngles, scale));
 
         /// <summary>
         /// 新しい動作演出ポイントを追加
@@ -44,7 +44,7 @@ namespace LibTS
         /// <remarks>
         /// Transform型で指定
         /// </remarks>
-        public void Add(Transform transform) => _info_Transforms.Add(new Info_Transform(transform));
+        public void Add(Transform transform) => _info_Transforms.Add(new Info_TransformUi(transform));
 
         /// <summary>
         /// 新しい動作演出ポイントを追加（指定インデックスに挿入）
@@ -52,7 +52,7 @@ namespace LibTS
         /// <remarks>
         /// positionはVector3型、rotationはQuaternion型、scaleはVector3型で指定
         /// </remarks>
-        public void Insert(int index, Vector3 position = default, Quaternion rotation = default, Vector3 scale = default) => _info_Transforms.Insert(index, new Info_Transform(position, rotation, scale));
+        public void Insert(int index, Vector3 position = default, Quaternion rotation = default, Vector3 scale = default) => _info_Transforms.Insert(index, new Info_TransformUi(position, rotation, scale));
 
         /// <summary>
         /// 新しい動作演出ポイントを追加（指定インデックスに挿入）
@@ -60,7 +60,7 @@ namespace LibTS
         /// <remarks>
         /// positionはVector3型、eulerAnglesはVector3型、scaleはVector3型で指定
         /// </remarks>
-        public void Insert(int index, Vector3 position = default, Vector3 eulerAngles = default, Vector3 scale = default) => _info_Transforms.Insert(index, new Info_Transform(position, eulerAngles, scale));
+        public void Insert(int index, Vector3 position = default, Vector3 eulerAngles = default, Vector3 scale = default) => _info_Transforms.Insert(index, new Info_TransformUi(position, eulerAngles, scale));
 
         /// <summary>
         /// 新しい動作演出ポイントを追加（指定インデックスに挿入）
@@ -68,7 +68,7 @@ namespace LibTS
         /// <remarks>
         /// Transform型で指定
         /// </remarks>
-        public void Insert(int index, Transform transform) => _info_Transforms.Insert(index, new Info_Transform(transform));
+        public void Insert(int index, Transform transform) => _info_Transforms.Insert(index, new Info_TransformUi(transform));
 
         /// <summary>
         /// 指定したインデックスの動作演出ポイントを削除

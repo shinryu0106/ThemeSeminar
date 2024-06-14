@@ -1,3 +1,7 @@
+using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace LibTS
@@ -60,6 +64,8 @@ namespace LibTS
         #endregion
 
         #region ForwardConstantly
+        private static Dictionary<Transform, CancellationTokenSource> _forwardConstantlyTasks = new();
+
         /// <summary>
         /// 指定した方向に、自分の向きを変えつつ指定時間だけ移動する
         /// </summary>
@@ -69,8 +75,28 @@ namespace LibTS
             TimeType timeType = TimeType.Default
         )
         {
-            var tCM = transform.gameObject.AddComponent<TransformCoroutineManager>();
-            tCM.InvokeForwardConstantly(direction, time, moveSpeed, rotateSpeed, timeType);
+            CancellationTokenSource cTS = new();
+            _forwardConstantlyTasks[transform] = cTS;
+            InvokeForwardConstantly(transform, direction, time, moveSpeed, rotateSpeed, timeType, cTS);
+        }
+
+        private static async void InvokeForwardConstantly(
+            this Transform transform, Vector3 direction, float time = 1f,
+            float moveSpeed = 1f, float rotateSpeed = 1f,
+            TimeType timeType = TimeType.Default,
+            CancellationTokenSource cTS = null
+        )
+        {
+            float preTime = Time.time;
+            while (true)
+            {
+                transform.Forward(direction, moveSpeed, rotateSpeed, timeType);
+
+                if (Time.time - preTime >= time || cTS.Token.IsCancellationRequested)
+                    return;
+                await Task.Yield();
+            }
+
         }
 
         /// <summary>
@@ -82,8 +108,28 @@ namespace LibTS
             TimeType timeType = TimeType.Default
         )
         {
-            var tCM = transform.gameObject.AddComponent<TransformCoroutineManager>();
-            tCM.InvokeForwardConstantly(target, time, rotateSpeed, timeType);
+            CancellationTokenSource cTS = new();
+            _forwardConstantlyTasks[transform] = cTS;
+            InvokeForwardConstantly(transform, target, time, rotateSpeed, timeType, cTS);
+        }
+
+        private static async void InvokeForwardConstantly(
+            this Transform transform, Transform target, float time = 1f,
+            float rotateSpeed = 1f,
+            TimeType timeType = TimeType.Default,
+            CancellationTokenSource cTS = null
+        )
+        {
+            float preTime = Time.time;
+            float moveSpeed = Vector3.Distance(transform.position, target.position) / time;
+            while (true)
+            {
+                transform.Forward(target, moveSpeed, rotateSpeed, timeType);
+
+                if (Time.time - preTime >= time || cTS.Token.IsCancellationRequested)
+                    return;
+                await Task.Yield();
+            }
         }
 
         /// <summary>
@@ -91,8 +137,11 @@ namespace LibTS
         /// </summary>
         public static void StopForwardConstantly(this Transform transform)
         {
-            if (transform.TryGetComponent<TransformCoroutineManager>(out var tCM))
-                tCM.Stop();
+            if (_forwardConstantlyTasks.ContainsKey(transform))
+            {
+                _forwardConstantlyTasks[transform].Cancel();
+                _forwardConstantlyTasks.Remove(transform);
+            }
             else
                 Debug.LogWarning("開始されているForwardConstantlyが存在しません。");
         }

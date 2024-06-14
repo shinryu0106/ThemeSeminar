@@ -261,7 +261,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u52D5\u304FUI\u306E\u30B5\u30F3\u30D7\u30EB"
+  m_Text: "UI\u52D5\u4F5C\u6F14\u51FA\u306E\u30B5\u30F3\u30D7\u30EB"
 --- !u!222 &324634485
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -18,6 +18,6 @@ public class Sample_ForwardConstantly_Transform : MonoBehaviour
         if (_target != null)
             transform.ForwardConstantly(_target, _time, _rotateSpeed, _timeType);
         else
-        transform.ForwardConstantly(_direction, _time, _moveSpeed, _rotateSpeed, _timeType);
+            transform.ForwardConstantly(_direction, _time, _moveSpeed, _rotateSpeed, _timeType);
     }
 }

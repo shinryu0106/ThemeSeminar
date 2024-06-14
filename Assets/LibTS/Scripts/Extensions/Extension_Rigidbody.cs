@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace LibTS
@@ -63,6 +66,8 @@ namespace LibTS
         #endregion
 
         #region ForwardConstantly
+        private static Dictionary<Rigidbody, CancellationTokenSource> _forwardConstantlyTasks = new();
+
         /// <summary>
         /// 指定した方向に、自分の向きを変えつつ指定時間だけ移動する
         /// </summary>
@@ -72,8 +77,27 @@ namespace LibTS
             TimeType timeType = TimeType.Default, ForceMode forceMode = ForceMode.Force
         )
         {
-            var rCM = rigidbody.gameObject.AddComponent<RigidbodyCoroutineManager>();
-            rCM.InvokeForwardConstantly(rigidbody, direction, time, moveSpeed, rotateSpeed, timeType, forceMode);
+            CancellationTokenSource cTS = new();
+            _forwardConstantlyTasks[rigidbody] = cTS;
+            InvokeForwardConstantly(rigidbody, direction, time, moveSpeed, rotateSpeed, timeType, forceMode, cTS);
+        }
+
+        private static async void InvokeForwardConstantly(
+            this Rigidbody rigidbody, Vector3 direction, float time = 1f,
+            float moveSpeed = 1f, float rotateSpeed = 1f,
+            TimeType timeType = TimeType.Default, ForceMode forceMode = ForceMode.Force,
+            CancellationTokenSource cTS = null
+        )
+        {
+            float preTime = Time.time;
+            while (true)
+            {
+                rigidbody.Forward(direction, moveSpeed, rotateSpeed, timeType, forceMode);
+
+                if (Time.time - preTime >= time || cTS.Token.IsCancellationRequested)
+                    return;
+                await Task.Yield();
+            }
         }
 
         /// <summary>
@@ -88,8 +112,27 @@ namespace LibTS
             TimeType timeType = TimeType.Default, ForceMode forceMode = ForceMode.Force
         )
         {
-            var rCM = rigidbody.gameObject.AddComponent<RigidbodyCoroutineManager>();
-            rCM.InvokeForwardConstantly(rigidbody, target, time, moveSpeed, rotateSpeed, error, timeType, forceMode);
+            CancellationTokenSource cTS = new();
+            _forwardConstantlyTasks[rigidbody] = cTS;
+            InvokeForwardConstantly(rigidbody, target, time, moveSpeed, rotateSpeed, error, timeType, forceMode, cTS);
+        }
+
+        private static async void InvokeForwardConstantly(
+            this Rigidbody rigidbody, Transform target, float time = 1f,
+            float moveSpeed = 1f, float rotateSpeed = 1f, float error = 0.1f,
+            TimeType timeType = TimeType.Default, ForceMode forceMode = ForceMode.Force,
+            CancellationTokenSource cTS = null
+        )
+        {
+            float preTime = Time.time;
+            while (true)
+            {
+                rigidbody.Forward(target, moveSpeed, rotateSpeed, error, timeType, forceMode);
+
+                if (Time.time - preTime >= time || cTS.Token.IsCancellationRequested)
+                    return;
+                await Task.Yield();
+            }
         }
 
         /// <summary>
@@ -97,8 +140,11 @@ namespace LibTS
         /// </summary>
         public static void StopForwardConstantly(this Rigidbody rigidbody)
         {
-            if (rigidbody.TryGetComponent<RigidbodyCoroutineManager>(out var rCM))
-                rCM.Stop();
+            if (_forwardConstantlyTasks.ContainsKey(rigidbody))
+            {
+                _forwardConstantlyTasks[rigidbody].Cancel();
+                _forwardConstantlyTasks.Remove(rigidbody);
+            }
             else
                 Debug.LogWarning("開始されているForwardConstantlyが存在しません。");
         }
