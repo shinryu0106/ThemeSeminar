@@ -47,6 +47,14 @@ namespace LibTS
         public void Add(Transform transform) => _info_Transforms.Add(new Info_TransformUi(transform));
 
         /// <summary>
+        /// 新しい動作演出ポイントを追加
+        /// </summary>
+        /// <remarks>
+        /// Info_TransformUi型で指定
+        /// </remarks>
+        public void Add(Info_TransformUi info_TransformUi) => _info_Transforms.Add(info_TransformUi);
+
+        /// <summary>
         /// 新しい動作演出ポイントを追加（指定インデックスに挿入）
         /// </summary>
         /// <remarks>
