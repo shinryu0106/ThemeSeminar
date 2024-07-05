@@ -14,22 +14,22 @@
         {
             "displayName": "Forward",
             "description": "ゲームオブジェクト前進のサンプル",
-            "path": "../Samples/Sample_Forward"
+            "path": "Samples/Sample_Forward"
         },
         {
             "displayName": "Collison Check",
             "description": "衝突判定のサンプル",
-            "path": "../Samples/Sample_CollisionCheck"
+            "path": "Samples/Sample_CollisionCheck"
         },
         {
             "displayName": "Move UI",
             "description": "UI移動演出のサンプル",
-            "path": "../Samples/Sample_MoveUI"
+            "path": "Samples/Sample_MoveUI"
         },
         {
             "displayName": "Item",
             "description": "アイテムデータベースのサンプル",
-            "path": "../Samples/Sample_Item"
+            "path": "Samples/Sample_Item"
         }
     ]
 }
