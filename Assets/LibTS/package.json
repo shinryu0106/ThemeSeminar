@@ -3,7 +3,33 @@
     "displayName": "LibTS",
     "version": "1.0.0",
     "unity": "2018.1",
-    "description": "２０２４年度前後期開講科目『テーマ実習５・６』（担当：飯田 周作）において、田中 佳佑（NE21-1006H）により作成されたUnity（C#）用ライブラリです。",
+    "description": "２０２４年度前後期開講科目『テーマ実習５・６』（担当：飯田 周作）において、田中 佳佑（NE21-1006H）により作成されたUnity（C#）用ライブラリです。\"https://sites.google.com/senshu-u.jp/libts\"にリファレンスがあります。",
+    "author": {
+        "name": "Yoshiryu",
+        "url": "https://github.com/shinryu0106"
+    },
     "dependencies": {
-    }
+    },
+    "samples": [
+        {
+            "displayName": "Forward",
+            "description": "ゲームオブジェクト前進のサンプル",
+            "path": "Samples/Sample_Forward"
+        },
+        {
+            "displayName": "Collison Check",
+            "description": "衝突判定のサンプル",
+            "path": "Samples/Sample_CollisionCheck"
+        },
+        {
+            "displayName": "Move UI",
+            "description": "UI移動演出のサンプル",
+            "path": "Samples/Sample_MoveUI"
+        },
+        {
+            "displayName": "Item",
+            "description": "アイテムデータベースのサンプル",
+            "path": "Samples/Sample_Item"
+        }
+    ]
 }

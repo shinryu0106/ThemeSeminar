@@ -65,7 +65,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets/LibTS/Scripts/Informations/Debugs/Info_TransformUi.cs" />
-    <Compile Include="Assets/LibTS/Samples/Sample_EventCheck/Res/Sample_CollisionCheck.cs" />
     <Compile Include="Assets/LibTS/Samples/Sample_Forward/Res/Sample_Forward_Transform.cs" />
     <Compile Include="Assets/LibTS/Scripts/Informations/UIs/UiMover.cs" />
     <Compile Include="Assets/LibTS/Scripts/Enums/Enum_TimeType.cs" />
@@ -80,6 +79,7 @@
     <Compile Include="Assets/LibTS/Scripts/Extensions/Extension_Rigidbody.cs" />
     <Compile Include="Assets/LibTS/Samples/Sample_Item/Item_Bundle/Res/Sample_ItemPrefabController.cs" />
     <Compile Include="Assets/LibTS/Samples/Sample_Item/Item_Override/Res/Sample_OverrideItem.cs" />
+    <Compile Include="Assets/LibTS/Samples/Sample_CollisionCheck/Res/Sample_CollisionCheck.cs" />
     <Compile Include="Assets/LibTS/Scripts/Informations/Debugs/Info_Forward.cs" />
     <Compile Include="Assets/LibTS/Scripts/Extensions/Extension_Transform.cs" />
     <Compile Include="Assets/LibTS/Samples/Sample_Forward/Res/Sample_Forward_Rigidbody.cs" />
