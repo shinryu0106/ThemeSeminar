@@ -40,6 +40,8 @@ namespace LibTS
             _preTime = -_interval;
         }
 
+        public bool CollisionCheck(Collision other) => CollisionCheck(other.gameObject.layer, other.gameObject.tag, other.gameObject.name);
+
         public bool CollisionCheck(Collider other) => CollisionCheck(other.gameObject.layer, other.gameObject.tag, other.gameObject.name);
 
         private bool CollisionCheck(int layer, string tag = "", string name = "")
