@@ -174,6 +174,7 @@ namespace LibTS
         {
             if (point < 0 || point >= _info_Transforms.Count)
                 return;
+            _nowPoint = point;
 
             _rectTransform.position = _info_Transforms[point].Position;
             _rectTransform.rotation = _info_Transforms[point].Rotation;

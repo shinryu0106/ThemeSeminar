@@ -64,26 +64,24 @@
     <Analyzer Include="/Applications/Unity/Hub/Editor/2022.3.16f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets/LibTS/Scripts/Informations/Debugs/Info_TransformUi.cs" />
+    <Compile Include="Assets/LibTS/Samples/Sample_Game/Res/Scripts/TargetFollower_RunGame.cs" />
     <Compile Include="Assets/LibTS/Samples/Sample_Forward/Res/Sample_Forward_Transform.cs" />
-    <Compile Include="Assets/LibTS/Scripts/Informations/UIs/UiMover.cs" />
-    <Compile Include="Assets/LibTS/Scripts/Enums/Enum_TimeType.cs" />
-    <Compile Include="Assets/LibTS/Scripts/Enums/Enum_EventCheckType.cs" />
-    <Compile Include="Assets/LibTS/Scripts/Extensions/CollisionChecker.cs" />
+    <Compile Include="Assets/LibTS/Samples/Sample_Game/Res/Scripts/GameManager_RunGame.cs" />
+    <Compile Include="Assets/LibTS/Samples/Sample_Game/Res/Scripts/PlayerController_RunGame.cs" />
+    <Compile Include="Assets/LibTS/Samples/Sample_Game/Res/Scripts/MoveButton_RunGame.cs" />
+    <Compile Include="Assets/LibTS/Samples/Sample_Game/Res/Scripts/Rotater_RunGame.cs" />
     <Compile Include="Assets/LibTS/Samples/Sample_Item/Item_Bundle/Res/Sample_ItemPrefabInstancer.cs" />
-    <Compile Include="Assets/LibTS/Scripts/Informations/Databases/BaseItem.cs" />
+    <Compile Include="Assets/LibTS/Samples/Sample_Game/Res/Scripts/ScoreChecker_RunGame.cs" />
     <Compile Include="Assets/LibTS/Samples/Sample_Forward/Res/Sample_ForwardConstantly_Transform.cs" />
     <Compile Include="Assets/LibTS/Samples/Sample_Forward/Res/Sample_ForwardConstantly_Rigidbody.cs" />
     <Compile Include="Assets/LibTS/Samples/Sample_Item/Item_Override/Res/Sample_ItemDescriber.cs" />
     <Compile Include="Assets/LibTS/Samples/Sample_MoveUI/Res/Sample_MoveUi.cs" />
-    <Compile Include="Assets/LibTS/Scripts/Extensions/Extension_Rigidbody.cs" />
     <Compile Include="Assets/LibTS/Samples/Sample_Item/Item_Bundle/Res/Sample_ItemPrefabController.cs" />
     <Compile Include="Assets/LibTS/Samples/Sample_Item/Item_Override/Res/Sample_OverrideItem.cs" />
     <Compile Include="Assets/LibTS/Samples/Sample_CollisionCheck/Res/Sample_CollisionCheck.cs" />
-    <Compile Include="Assets/LibTS/Scripts/Informations/Debugs/Info_Forward.cs" />
-    <Compile Include="Assets/LibTS/Scripts/Extensions/Extension_Transform.cs" />
+    <Compile Include="Assets/LibTS/Samples/Sample_Game/Res/Scripts/GateChecker_RunGame.cs" />
     <Compile Include="Assets/LibTS/Samples/Sample_Forward/Res/Sample_Forward_Rigidbody.cs" />
-    <Compile Include="Assets/LibTS/Scripts/Informations/Databases/ItemBundler.cs" />
+    <Compile Include="Assets/LibTS/Samples/Sample_Game/Res/Scripts/GateInstancer_RunGame.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -984,6 +982,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="LibTS.csproj" />
   </ItemGroup>
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
   <ItemGroup>
