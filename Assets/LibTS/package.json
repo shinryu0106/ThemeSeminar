@@ -30,6 +30,11 @@
             "displayName": "Item",
             "description": "アイテムデータベースのサンプル",
             "path": "Samples/Sample_Item"
+        },
+        {
+            "displayName": "Game",
+            "description": "簡単なゲームのサンプル",
+            "path": "Samples/Sample_Game"
         }
     ]
 }
