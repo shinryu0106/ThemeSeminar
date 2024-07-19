@@ -64,16 +64,24 @@
     <Analyzer Include="/Applications/Unity/Hub/Editor/2022.3.16f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets/LibTS/Scripts/Samples/GameManager_RunGame.cs" />
     <Compile Include="Assets/LibTS/Scripts/Informations/Debugs/Info_TransformUi.cs" />
+    <Compile Include="Assets/LibTS/Scripts/Samples/GateChecker_RunGame.cs" />
     <Compile Include="Assets/LibTS/Scripts/Informations/UIs/UiMover.cs" />
     <Compile Include="Assets/LibTS/Scripts/Enums/Enum_TimeType.cs" />
     <Compile Include="Assets/LibTS/Scripts/Enums/Enum_EventCheckType.cs" />
     <Compile Include="Assets/LibTS/Scripts/Extensions/CollisionChecker.cs" />
+    <Compile Include="Assets/LibTS/Scripts/Samples/GateInstancer_RunGame.cs" />
+    <Compile Include="Assets/LibTS/Scripts/Samples/ScoreChecker_RunGame.cs" />
+    <Compile Include="Assets/LibTS/Scripts/Samples/MoveButton_RunGame.cs" />
+    <Compile Include="Assets/LibTS/Scripts/Samples/PlayerController_RunGame.cs" />
     <Compile Include="Assets/LibTS/Scripts/Informations/Databases/BaseItem.cs" />
     <Compile Include="Assets/LibTS/Scripts/Extensions/Extension_Rigidbody.cs" />
+    <Compile Include="Assets/LibTS/Scripts/Samples/Rotater_RunGame.cs" />
     <Compile Include="Assets/LibTS/Scripts/Informations/Debugs/Info_Forward.cs" />
     <Compile Include="Assets/LibTS/Scripts/Extensions/Extension_Transform.cs" />
     <Compile Include="Assets/LibTS/Scripts/Informations/Databases/ItemBundler.cs" />
+    <Compile Include="Assets/LibTS/Scripts/Samples/TargetFollower_RunGame.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets/LibTS/Scripts/LibTS.asmdef" />
