@@ -811,3 +811,19 @@ Received Import Request.
 Start importing Assets/LibTS/Samples/Sample_Game/SampleScene_RunGame.unity using Guid(9231d7d37a2f447eeb698b10dd74a13e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c50afd91d19cdca0ad278de31bbc2a74') in 0.008780 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 445.962354 seconds.
+  path: Assets/LibTS/Samples/Sample_Game/Res/Prefabs/Player.prefab
+  artifactKey: Guid(9221cd586956546eaada25d10a15ee3c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/LibTS/Samples/Sample_Game/Res/Prefabs/Player.prefab using Guid(9221cd586956546eaada25d10a15ee3c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '77099e5cf080cd18ed772ba8ba1d2020') in 0.580719 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 64
+========================================================================
+Received Import Request.
+  Time since last request: 296.745737 seconds.
+  path: Assets/LibTS/Materials
+  artifactKey: Guid(d5731c1e4bf6f4f22ac6785ea05d1a6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/LibTS/Materials using Guid(d5731c1e4bf6f4f22ac6785ea05d1a6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5b783affcf6156897d15fd7fe34af88e') in 0.003949 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0

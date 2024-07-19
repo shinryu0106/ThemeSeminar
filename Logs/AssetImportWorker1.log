@@ -667,3 +667,11 @@ AssetImportParameters requested are different than current active one (requested
   custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
   custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+========================================================================
+Received Import Request.
+  Time since last request: 361087.517209 seconds.
+  path: Assets/LibTS/Samples/Sample_Game/Res/Prefabs/Gate.prefab
+  artifactKey: Guid(72670b66a0c634c2c8782ee7eb2fd8e8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/LibTS/Samples/Sample_Game/Res/Prefabs/Gate.prefab using Guid(72670b66a0c634c2c8782ee7eb2fd8e8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3d6a39128db518e2491356ad56661232') in 0.589468 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 37
