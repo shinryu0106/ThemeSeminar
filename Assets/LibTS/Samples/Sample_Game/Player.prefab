@@ -292,13 +292,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _allowMove: 0
-  _moveSpeed: 5
+  _moveSpeed: 8
   _speedCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 5
+      value: 8
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -308,16 +308,16 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1
       value: 18
-      inSlope: 36.415092
+      inSlope: 22.98984
       outSlope: 6
       tangentMode: 1
       weightedMode: 0
-      inWeight: 0.050000012
+      inWeight: 0.054166675
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _speedAdjustment: 0.02
+  _speedAdjustment: 0.1
   _direction: {x: 0, y: 0, z: 1}
   _defaultPosition: {x: 0, y: 0.25, z: 0}
   _allowOperation: 0

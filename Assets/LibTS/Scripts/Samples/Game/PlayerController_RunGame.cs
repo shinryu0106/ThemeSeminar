@@ -24,9 +24,10 @@ public class PlayerController_RunGame : MonoBehaviour
             }
         }
     }
-    [SerializeField] private float _moveSpeed = 3f;
+    [SerializeField] private float _moveSpeed = 6f;
     [SerializeField] private AnimationCurve _speedCurve = null;
     [SerializeField] private float _speedAdjustment = 0.1f;
+    private float _startTime = 0f;
     [SerializeField] private Vector3 _direction = Vector3.forward;
     [SerializeField] private Vector3 _defaultPosition = new(0f, 0.25f, 0f);
 
@@ -60,6 +61,7 @@ public class PlayerController_RunGame : MonoBehaviour
     {
         AllowMove = true;
         _allowOperation = true;
+        _startTime = 0f;
 
         transform.position = _defaultPosition;
 
@@ -72,9 +74,9 @@ public class PlayerController_RunGame : MonoBehaviour
         if (!_allowOperation)
             return;
 
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
             AnimateLeft();
-        else if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             AnimateRight();
     }
 
@@ -120,18 +122,20 @@ public class PlayerController_RunGame : MonoBehaviour
         if (!_allowMove)
             return;
 
-        _moveSpeed = _speedCurve.Evaluate(Time.time * _speedAdjustment);
+        _moveSpeed = _speedCurve.Evaluate(_startTime * _speedAdjustment);
         transform.Forward(_direction, _moveSpeed, 0f);
     }
 
     private void Awake()
     {
         _playerControllerStatic = this;
+        _startTime = 0f;
     }
 
     private void Update()
     {
         Operate();
+        _startTime += Time.deltaTime;
         Move();
     }
 }
